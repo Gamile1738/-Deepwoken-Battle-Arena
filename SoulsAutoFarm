@@ -1,0 +1,26 @@
+game.StarterGui:SetCore("SendNotification", {Title = "Credit!", Text = "Made by Luxky#0001", Icon = "", Duration = 5})
+
+local plr = game.Players.LocalPlayer
+local char = plr.Character
+local hum = char.Humanoid
+local root = char.HumanoidRootPart
+local rs = game:GetService("RunService")
+
+local part = Instance.new("Part")
+part.Name = "SafeSpot"
+part.Parent = game.Workspace
+part.Size = Vector3.new(50,1,50)
+part.CFrame = CFrame.new(-9930.08203, 10162.5615, -31002.1445)
+part.Anchored = true
+
+rs.RenderStepped:Connect(function()
+    wait()
+    for i,v in pairs(game:GetService("Workspace").Souls:GetChildren()) do
+            local location = root.CFrame
+            if v.Name == "Soul" then
+            root.CFrame = v.CFrame
+            wait(0.5)
+            root.CFrame = part.CFrame + Vector3.new(0,10,0)
+        end
+    end
+end)
